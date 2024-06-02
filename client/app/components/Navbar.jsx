@@ -4,7 +4,8 @@ import React, { useState } from "react";
 // Import Next.js Image component for optimized images
 import Image from "next/image";
 // Import the logo; ensure the path is correct for your project structure
-import Logo from '../assets/images/retirewise.png'
+import Logo from "../assets/images/retirewise.png";
+import Link from "next/link";
 
 // Define the Navbar component
 const Navbar = () => {
@@ -20,22 +21,21 @@ const Navbar = () => {
     <>
       <nav className="w-full z-50 top-0 start-0 bg-white">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-                      <Image src={Logo}  alt="Flowbite Logo" width={150} height={100} />
-          </a>
-                  <div className="flex md:order-2 space-x-0 md:space-x-0 rtl:space-x-reverse">
-                      <a href="#/login">
-            <button
-              type="button"
-              className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center bg-black
-              text-white px-4 py-4 hidden md:inline-flex"
-            >
-              Login
-                          </button>
-                          </a>
+            <Image src={Logo} alt="Flowbite Logo" width={150} height={100} />
+          </Link>
+          <div className="flex md:order-2 space-x-0 md:space-x-0 rtl:space-x-reverse">
+            <Link href="/login">
+              <button
+                type="button"
+                className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center bg-black text-white px-4 py-4 hidden md:inline-flex"
+              >
+                Login
+              </button>
+            </Link>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -63,34 +63,36 @@ const Navbar = () => {
             </button>
           </div>
           <div
-            className={`${isMenuOpen ? "flex" : "hidden"} items-center justify-between w-full md:flex md:w-auto md:order-1`}
+            className={`${
+              isMenuOpen ? "flex" : "hidden"
+            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-sticky"
           >
             <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md: -gray-700 w-full items-center text-black font-bold">
               <li>
-                <a
+                <Link
                   href="/#home"
                   className="block py-2 px-3 rounded md:p-0 hover:text-secondary"
                   aria-current="page"
                 >
                   Explore
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/#learn"
                   className="block py-2 px-3 rounded hover:text-secondary md:p-0 md::text-blue-500 -white :-700 :text-white -gray-700"
                 >
                   Learn
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/#investments"
-                  className="block py-2 px-3  rounded hover:-100 md:hover: hover:text-secondary md:p-0 md::text-blue-500 -white :-700 :text-white md:: -gray-700"
+                  className="block py-2 px-3 rounded hover:-100 md:hover: hover:text-secondary md:p-0 md::text-blue-500 -white :-700 :text-white md:: -gray-700"
                 >
                   Investments
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
