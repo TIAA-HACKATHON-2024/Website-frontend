@@ -1,0 +1,90 @@
+[
+  {
+    "question": "I plan to begin withdrawing money from my investments in:",
+    "name": "question1",
+    "options": [
+      { "text": "Less than 3 years", "points": 1 },
+      { "text": "3–5 years", "points": 3 },
+      { "text": "6–10 years", "points": 7 },
+      { "text": "11 years or more", "points": 10 }
+    ]
+  },
+  {
+    "question": "Once I begin withdrawing funds from my investments, I plan to spend all of the funds in:",
+    "name": "question2",
+    "options": [
+      { "text": "Less than 2 years", "points": 0 },
+      { "text": "2–5 years", "points": 1 },
+      { "text": "6–10 years", "points": 4 },
+      { "text": "11 years or more", "points": 8 }
+    ]
+  },
+  {
+    "question": "I would describe my knowledge of investments as:",
+    "name": "question3",
+    "options": [
+      { "text": "None", "points": 1 },
+      { "text": "Limited", "points": 3 },
+      { "text": "Good", "points": 7 },
+      { "text": "Extensive", "points": 10 }
+    ]
+  },
+  {
+    "question": "What amount of financial risk are you willing to take when you invest?",
+    "name": "question4",
+    "options": [
+      {
+        "text": "Take lower than average risks expecting to earn lower than average returns",
+        "points": 0
+      },
+      {
+        "text": "Take average risks expecting to earn average returns",
+        "points": 4
+      },
+      {
+        "text": "Take above average risks expecting to earn above average returns",
+        "points": 8
+      }
+    ]
+  },
+  {
+    "question": "Select the investments you currently own or have owned:",
+    "name": "question5",
+    "options": [
+      { "text": "Bonds and/or bond funds", "points": 3 },
+      { "text": "Stocks and/or stock funds", "points": 6 },
+      {
+        "text": "International securities and/or international funds",
+        "points": 8
+      }
+    ]
+  },
+  {
+    "question": "Imagine that in the past three months, the overall stock market lost 25% of its value. An individual stock investment you own also lost 25% of its value. What would you do?",
+    "name": "question6",
+    "options": [
+      { "text": "Sell all of my shares", "points": 0 },
+      { "text": "Sell some of my shares", "points": 2 },
+      { "text": "Do nothing", "points": 5 },
+      { "text": "Buy more shares", "points": 8 }
+    ]
+  },
+  {
+    "question": "We’ve outlined the most likely best-case and worst-case annual returns of five hypothetical investment plans. Which range of possible outcomes is most acceptable to you?",
+    "name": "question7",
+    "options": [
+      { "text": "Plan A: 7.1% (Best: 22.8%, Worst: -9.5%)", "points": 0 },
+      { "text": "Plan B: 8.3% (Best: 27.0%, Worst: -13.3%)", "points": 3 },
+      { "text": "Plan C: 9.2% (Best: 30.9%, Worst: -20.9%)", "points": 6 },
+      { "text": "Plan D: 9.8% (Best: 34.4%, Worst: -29.5%)", "points": 8 },
+      { "text": "Plan E: 10.1% (Best: 39.9%, Worst: -36.0%)", "points": 10 }
+    ],
+    "table": [
+      { "plan": "A", "average": "7.1%", "best": "22.8%", "worst": "-9.5%" },
+      { "plan": "B", "average": "8.3%", "best": "27.0%", "worst": "-13.3%" },
+      { "plan": "C", "average": "9.2%", "best": "30.9%", "worst": "-20.9%" },
+      { "plan": "D", "average": "9.8%", "best": "34.4%", "worst": "-29.5%" },
+      { "plan": "E", "average": "10.1%", "best": "39.9%", "worst": "-36.0%" }
+    ]
+  }
+]
