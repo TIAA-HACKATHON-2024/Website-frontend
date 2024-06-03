@@ -2,8 +2,8 @@
 import { Avatar, Button, Input } from "@nextui-org/react";
 import React, { useState, useEffect } from "react";
 import { WindupChildren } from "windups";
-import UserAvatar from "../../assets/images/avatar_user.jpeg";
-import AIAvatar from "../../assets/images/avatar.jpg";
+import UserAvatar from "../assets/images/user_avtar.jpg";
+import AIAvatar from "../assets/images/chatbot.png";
 
 const Chatbot = () => {
   const [showChatbox, setShowChatbox] = useState(false);
@@ -85,7 +85,7 @@ const Chatbot = () => {
     <div>
       {/* Chatbot Icon */}
       <div
-        className="chatbot-icon w-20 h-20 text-2xl bg-primaryRed rounded-full flex items-center justify-center fixed bottom-10 right-10 cursor-pointer"
+        className="chatbot-icon w-16 h-16 text-4xl bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full flex items-center justify-center fixed bottom-10 right-10 cursor-pointer shadow-lg hover:scale-105 transition-transform"
         onClick={toggleChatbox}
       >
         🤖
@@ -93,72 +93,64 @@ const Chatbot = () => {
 
       {/* Chatbox */}
       {showChatbox && (
-        <div className="chatbox fixed bottom-10 w-[70vw] right-10 md:w-[25vw] h-[70vh] bg-white rounded-2xl shadow-lg flex flex-col justify-between">
+        <div className="chatbox fixed bottom-10 w-[70vw] right-10 md:w-[25vw] h-[70vh] rounded-2xl shadow-2xl flex flex-col bg-white justify-between border-2 border-gray-300">
           {/* Chatbox Header */}
-          <div className="flex justify-between mb-2 p-4 bg-primary rounded-t-2xl">
-            <div className="text-lg font-semibold text-white">
+          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-t-2xl text-white">
+            <div className="text-lg font-semibold">
               Chat with Expert
             </div>
             <div
               onClick={toggleChatbox}
-              className="cursor-pointer bg-primaryRed border-1 border-primaryRed rounded-2xl p-2 text-white"
+              className="cursor-pointer bg-red-500 hover:bg-red-700 transition-colors rounded-full p-3 text-white"
             >
-              Close
+              ✖
             </div>
           </div>
 
           {/* Chatbox Content */}
           <div
             id="chatbox-content"
-            className="flex flex-col overflow-y-auto flex-grow p-2"
+            className="flex flex-col overflow-y-auto flex-grow p-4 space-y-4"
             style={{ minHeight: 0 }}
           >
             {chatMessages.map((message, index) => (
               <div
                 key={index}
-                className={`mb-2 ${
+                className={`flex ${
                   message.role === "user" ? "justify-end" : "justify-start"
-                } flex items-center`}
+                }`}
               >
-                {message.role !== "user" ? (
-                  <Avatar src="/avatar.jpg"></Avatar>
-                ) : (
-                  <></>
+                {message.role !== "user" && (
+                  <Avatar src={UserAvatar} className="mr-2" />
                 )}
                 <div
                   className={`p-3 rounded-lg max-w-[70%] ${
                     message.role === "user"
-                      ? "bg-primary text-white self-end"
-                      : "bg-gray-200"
+                      ? "bg-blue-500 text-white self-end"
+                      : "bg-gray-800"
                   }`}
                 >
                   <WindupChildren>{message.message}</WindupChildren>
                 </div>
-                <div className="ml-2">
-                  {message.role === "user" ? (
-                    <Avatar src="/avatar_user.jpeg"></Avatar>
-                  ) : (
-                    <></>
-                  )}
-                </div>
+                {message.role === "user" && (
+                  <Avatar src={UserAvatar} className="ml-2" />
+                )}
               </div>
             ))}
           </div>
 
           {/* Loading Animation with Chatbot Avatar */}
           {loading && (
-            <div className="flex justify-start items-end">
-              <div>
-                <Avatar src="/avatar.jpg"></Avatar>
-              </div>
-              <div className="p-3 bg-gray-200 rounded-lg max-w-[70%]">
+            <div className="flex justify-start items-center p-4">
+              <Avatar src={AIAvatar} className="mr-2" />
+              <div className="p-3 bg-blue-500 text-white rounded-lg max-w-[70%]">
                 {/* You can replace this with your loading animation or component */}
                 Loading...
               </div>
             </div>
           )}
 
-          <div className="flex gap-4 items-center p-2">
+          <div className="flex gap-4 items-center p-4 bg-gray-100 border-t border-gray-300">
             {/* User Input */}
             <Input
               value={userInput}
@@ -167,16 +159,19 @@ const Chatbot = () => {
               placeholder="Enter your prompts here"
               variant="bordered"
               classNames={{
-                inputWrapper: "bg-white",
+                inputWrapper: "bg-white rounded-md",
+                input: "text-gray-800",
               }}
-              size="sm"
+              size="lg"
+              fullWidth
             />
 
             {/* Submit Button */}
             <Button
               type="submit"
               onClick={handleSubmit}
-              className="w-4 bg-primary text-white"
+              className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-700 hover:to-purple-700 rounded-md transition-colors"
+              auto
             >
               Send
             </Button>
