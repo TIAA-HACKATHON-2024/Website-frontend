@@ -4,8 +4,10 @@ import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import questionnaireData from "../data/questionnaire.json";
 import { Question } from "../types";
 import { FaRegQuestionCircle } from "react-icons/fa"; // Import an icon
+import { useRouter } from "next/navigation";
 
 const Page: React.FC = () => {
+  const router = useRouter();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -46,7 +48,8 @@ const Page: React.FC = () => {
       timeHorizonIndex,
       riskToleranceIndex
     );
-    alert(`Your risk degree is: ${riskDegree}`);
+    // alert(`Your risk degree is: ${riskDegree}`);
+    router.push(`/RiskResult?riskDegree=${riskDegree}`);
   };
 
   const calculateTimeHorizonIndex = (timeHorizonScore: number): number => {
@@ -125,7 +128,8 @@ const Page: React.FC = () => {
         className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg"
       >
         <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-          <FaRegQuestionCircle className="mr-2" /> Investor Profile Questionnaire
+          <FaRegQuestionCircle className="mr-2" /> Investor Profile
+          Questionnaire
         </h2>
         {questions.length > 0 && (
           <>
