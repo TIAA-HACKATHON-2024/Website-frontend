@@ -3,6 +3,7 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import questionnaireData from "../data/questionnaire.json";
 import { Question } from "../types";
+import { FaRegQuestionCircle } from "react-icons/fa"; // Import an icon
 
 const Page: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -123,8 +124,8 @@ const Page: React.FC = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Investor Profile Questionnaire
+        <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
+          <FaRegQuestionCircle className="mr-2" /> Investor Profile Questionnaire
         </h2>
         {questions.length > 0 && (
           <>
@@ -146,40 +147,45 @@ const Page: React.FC = () => {
                 </select>
               </label>
               {questions[currentStep].table && (
-                <table className="min-w-full bg-white border border-gray-200">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-2 border-b text-black">Plan</th>
-                      <th className="px-4 py-2 border-b text-black">
-                        Average annual return
-                      </th>
-                      <th className="px-4 py-2 border-b text-black">
-                        Best-case
-                      </th>
-                      <th className="px-4 py-2 border-b text-black">
-                        Worst-case
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {questions[currentStep].table?.map((row, i) => (
-                      <tr key={i}>
-                        <td className="px-4 py-2 border-b text-black">
-                          {row.plan}
-                        </td>
-                        <td className="px-4 py-2 border-b text-black">
-                          {row.average}
-                        </td>
-                        <td className="px-4 py-2 border-b text-black">
-                          {row.best}
-                        </td>
-                        <td className="px-4 py-2 border-b text-black">
-                          {row.worst}
-                        </td>
+                <>
+                  <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">
+                    Comparison Table
+                  </h3>
+                  <table className="min-w-full bg-white border border-gray-200">
+                    <thead>
+                      <tr>
+                        <th className="px-4 py-2 border-b text-black">Plan</th>
+                        <th className="px-4 py-2 border-b text-black">
+                          Average annual return
+                        </th>
+                        <th className="px-4 py-2 border-b text-black">
+                          Best-case
+                        </th>
+                        <th className="px-4 py-2 border-b text-black">
+                          Worst-case
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {questions[currentStep].table?.map((row, i) => (
+                        <tr key={i}>
+                          <td className="px-4 py-2 border-b text-black">
+                            {row.plan}
+                          </td>
+                          <td className="px-4 py-2 border-b text-black">
+                            {row.average}
+                          </td>
+                          <td className="px-4 py-2 border-b text-black">
+                            {row.best}
+                          </td>
+                          <td className="px-4 py-2 border-b text-black">
+                            {row.worst}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
               )}
             </div>
             <div className="flex justify-between mt-6">

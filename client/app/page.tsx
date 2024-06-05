@@ -8,7 +8,7 @@ export default function Home() {
         <div id="home">
           <Hero/>
         </div>
-        <div id="cards">
+        <div id="learn">
           <FinancialLiteracy/>
         </div>
         <div className='fixed bottom-[20px] right-[20px] z-20'>
