@@ -1,6 +1,7 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PieChart from "../components/PieChart";
 
 const CreatePortfolio: React.FC = () => {
   const router = useRouter();
@@ -8,11 +9,9 @@ const CreatePortfolio: React.FC = () => {
   const riskDegree = searchParams.get("riskDegree");
   const numStocks = searchParams.get("numStocks");
   const excludedTickers = searchParams.get("excludedTickers");
-  const [data, setData] = React.useState<{ [key: string]: number } | null>(
-    null
-  );
+  const [data, setData] = useState<{ [key: string]: number } | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       if (riskDegree && numStocks && excludedTickers) {
         try {
@@ -56,26 +55,31 @@ const CreatePortfolio: React.FC = () => {
           Suggested Portfolio
         </h1>
         {data ? (
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 border-b text-black">Ticker</th>
-                <th className="px-4 py-2 border-b text-black">
-                  Allocation (%)
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(data).map(([ticker, allocation], index) => (
-                <tr key={index}>
-                  <td className="px-4 py-2 border-b text-black">{ticker}</td>
-                  <td className="px-4 py-2 border-b text-black">
-                    {allocation.toFixed(2)}
-                  </td>
+          <>
+            <table className="min-w-full bg-white border border-gray-200">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2 border-b text-black">Ticker</th>
+                  <th className="px-4 py-2 border-b text-black">
+                    Allocation (%)
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {Object.entries(data).map(([ticker, allocation], index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2 border-b text-black">{ticker}</td>
+                    <td className="px-4 py-2 border-b text-black">
+                      {allocation.toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="mt-6">
+              <PieChart data={Object.values(data)} labels={Object.keys(data)} />
+            </div>
+          </>
         ) : (
           <p className="text-black">Loading...</p>
         )}

@@ -1,6 +1,7 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
+import PieChart from "../components/PieChart";
 
 const OptimisePortfolio: React.FC = () => {
   const router = useRouter();
@@ -52,26 +53,31 @@ const OptimisePortfolio: React.FC = () => {
           Suggested Portfolio
         </h1>
         {data ? (
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 border-b text-black">Ticker</th>
-                <th className="px-4 py-2 border-b text-black">
-                  Allocation (%)
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(data).map(([ticker, allocation], index) => (
-                <tr key={index}>
-                  <td className="px-4 py-2 border-b text-black">{ticker}</td>
-                  <td className="px-4 py-2 border-b text-black">
-                    {allocation.toFixed(2)}
-                  </td>
+          <>
+            <table className="min-w-full bg-white border border-gray-200">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2 border-b text-black">Ticker</th>
+                  <th className="px-4 py-2 border-b text-black">
+                    Allocation (%)
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {Object.entries(data).map(([ticker, allocation], index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2 border-b text-black">{ticker}</td>
+                    <td className="px-4 py-2 border-b text-black">
+                      {allocation.toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="mt-6">
+              <PieChart data={Object.values(data)} labels={Object.keys(data)} />
+            </div>
+          </>
         ) : (
           <p className="text-black">Loading...</p>
         )}
