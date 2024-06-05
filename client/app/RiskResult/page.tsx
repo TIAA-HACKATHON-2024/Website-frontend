@@ -9,7 +9,7 @@ const RiskResultPage = () => {
   const risk_degree = searchParams.get("riskDegree");
   console.log(risk_degree);
 
-  const [numStocks, setNumStocks] = useState<Number | null>(); // Default number of stocks
+  const [numStocks, setNumStocks] = useState<number>(); // Default number of stocks
   const [excludedTickers, setExcludedTickers] = useState<string>(""); // Default excluded tickers
   const [initStocks, setInitStocks] = useState<string>(""); // Default excluded tickers
 
