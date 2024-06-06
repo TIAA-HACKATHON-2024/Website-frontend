@@ -3,8 +3,9 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import questionnaireData from "../data/questionnaire.json";
 import { Question } from "../types";
-import { FaRegQuestionCircle } from "react-icons/fa"; // Import an icon
+import { FaRegQuestionCircle, FaInfoCircle } from "react-icons/fa"; // Import icons
 import { useRouter } from "next/navigation";
+import { Tooltip } from 'react-tooltip'; // Tooltip component
 
 const Page: React.FC = () => {
   const router = useRouter();
@@ -121,16 +122,50 @@ const Page: React.FC = () => {
     return profileChart[timeHorizonIndex][riskToleranceIndex];
   };
 
+  const progress = ((currentStep + 1) / questions.length) * 100;
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-lg">
+        <h1 className="text-3xl text-black font-bold mb-6 text-center">
+          Investor Profile Questionnaire
+        </h1>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg"
+        className="w-full max-w-lg bg-white p-12 shadow-lg rounded-lg"
       >
         <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
           <FaRegQuestionCircle className="mr-2" /> Investor Profile
           Questionnaire
+          <FaInfoCircle
+            className="ml-2 cursor-pointer"
+            data-tooltip-id="tooltip-info"
+            data-tooltip-content="This questionnaire helps determine your investment risk profile."
+          />
+          <Tooltip id="tooltip-info" />
         </h2>
+
+        <div className="relative pt-1">
+          <div className="flex mb-2 items-center justify-between">
+            <div>
+              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                Progress
+              </span>
+            </div>
+            <div className="text-right">
+              <span className="text-xs font-semibold inline-block text-blue-900">
+                {Math.round(progress)}%
+              </span>
+            </div>
+          </div>
+          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+            <div
+              style={{ width: `${progress}%` }}
+              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900"
+            ></div>
+          </div>
+        </div>
+
         {questions.length > 0 && (
           <>
             <div key={currentStep} className="mb-4">
@@ -140,7 +175,7 @@ const Page: React.FC = () => {
                   name={questions[currentStep].name}
                   value={answers[questions[currentStep].name]}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-900 focus:border-blue-900"
                 >
                   <option value="">Select...</option>
                   {questions[currentStep].options.map((option, i) => (
@@ -206,7 +241,7 @@ const Page: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
                   Next
                 </button>
@@ -214,7 +249,7 @@ const Page: React.FC = () => {
               {isAnswered && currentStep === questions.length - 1 && (
                 <button
                   type="submit"
-                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                  className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                   Submit
                 </button>
@@ -222,7 +257,8 @@ const Page: React.FC = () => {
             </div>
           </>
         )}
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

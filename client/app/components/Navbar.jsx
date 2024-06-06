@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link href="/login">
               <button
                 type="button"
-                className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center bg-black text-white px-4 py-4 hidden md:inline-flex"
+                className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center bg-blue-900 hover:bg-blue-500 text-white px-4 py-4 hidden md:inline-flex"
               >
                 Login
               </button>

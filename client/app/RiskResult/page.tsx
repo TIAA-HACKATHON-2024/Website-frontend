@@ -45,9 +45,9 @@ const RiskResultPage = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Risk Result Page
+      <div className="w-full max-w-lg bg-white p-12 shadow-lg rounded-lg">
+        <h1 className="text-2xl text-black font-bold mb-6 text-center">
+          Risk Result Analysis
         </h1>
         <p className="text-center mb-4">Risk Degree: {risk_degree}</p>
         <div className="mb-4">
@@ -58,7 +58,7 @@ const RiskResultPage = () => {
             type="number"
             value={numStocks}
             onChange={handleNumStocksChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-black"
+            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-900 focus:border-blue-900 text-black"
           />
         </div>
         <div className="mb-4">
@@ -69,7 +69,7 @@ const RiskResultPage = () => {
             type="text"
             value={excludedTickers}
             onChange={handleExcludedTickersChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-black"
+            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-900 text-black"
           />
         </div>
         <div className="mb-4">
@@ -80,19 +80,19 @@ const RiskResultPage = () => {
             type="text"
             value={initStocks}
             onChange={handleInitStocksChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-black"
+            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-900 text-black"
           />
         </div>
         <div className="flex justify-between mt-6">
           <button
             onClick={handleCreatePortfolio}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
             Create New Portfolio
           </button>
           <button
             onClick={handleOptimizePortfolio}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600"
           >
             Optimize Your Portfolio
           </button>

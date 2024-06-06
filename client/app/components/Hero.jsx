@@ -17,7 +17,7 @@ const Hero = () => {
           <br></br>Invest confidently with RetireWise.
         </div>
         <button className="flex bg-white text-black text-primary font-semibold text-lg px-8 py-4 mt-8 rounded-3xl">
-          <Link href="/Questionnaire">Get Started</Link>
+          <Link href="/Questionnaire">Forecast Your Investments</Link>
         </button>
       </div>
       <Image
