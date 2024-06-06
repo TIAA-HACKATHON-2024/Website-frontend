@@ -3,34 +3,48 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 
+const topics = [
+  "What is options trading",
+  "How to manage retirement savings",
+  "Understanding Social Security benefits",
+  "Investment strategies for retirees",
+  "Estate planning basics",
+  "Tax planning for retirement",
+  "Health insurance options in retirement",
+  "Long-term care planning",
+  "Creating a retirement budget",
+  "Understanding annuities"
+];
+
 const FinancialLiteracyCard = () => {
-  const [topic, setTopic] = useState(null);
+  const [data, setData] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTopic = async () => {
+    const fetchTopic = async (topic) => {
       try {
-        console.log("Fetching data...");
+        console.log(`Fetching data for: ${topic}`);
         const response = await axios.post(
           "https://literacy-api-1.onrender.com/api/literacy",
-          {
-            topic: "What is options trading",
-          }
+          { topic }
         );
-        const data = await response.data;
-        console.log("Response:", data);
-        setTopic(data.response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        const result = response.data;
+        console.log(`Response for ${topic}:`, result);
+        setData((prevData) => ({
+          ...prevData,
+          [topic]: result.response,
+        }));
+      } catch (err) {
+        console.error(`Error fetching data for ${topic}:`, err);
         setError("Error fetching data. Please try again later.");
       }
     };
 
-    fetchTopic();
+    topics.forEach((topic) => fetchTopic(topic));
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col p-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
       <div className="text-center p-6">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           Get to know more about Finance
@@ -39,18 +53,24 @@ const FinancialLiteracyCard = () => {
       {error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : (
-        topic && (
-          <div className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden">
-            <div className="p-4 bg-blue-900">
-              <h2 className="text-2xl font-semibold text-white">
-                Topic
-              </h2>
-            </div>
-            <div className="p-6">
-              <p className="text-gray-700 text-base">{topic}</p>
-            </div>
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topics.map((topic) => (
+              <div key={topic} className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="p-4 bg-blue-900">
+                  <h2 className="text-2xl font-semibold text-white">
+                    {topic}
+                  </h2>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-700 text-base">
+                    {data[topic] ? data[topic] : "Loading..."}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        )
+        </div>
       )}
     </div>
   );
