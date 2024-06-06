@@ -13,7 +13,6 @@ const topics = [
   "Health insurance options in retirement",
   "Long-term care planning",
   "Creating a retirement budget",
-  "Understanding annuities"
 ];
 
 const FinancialLiteracyCard = () => {
