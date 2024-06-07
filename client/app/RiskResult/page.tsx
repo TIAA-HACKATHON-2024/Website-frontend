@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import CreatePortfolioCard from "../components/CreatePortfolioCard";
+import OptimisePortfolioCard from "../components/OptimisePortfolioCard";
 
 const RiskResultPage = () => {
   const router = useRouter();
@@ -9,9 +11,19 @@ const RiskResultPage = () => {
   const risk_degree = searchParams.get("riskDegree");
   console.log(risk_degree);
 
-  const [numStocks, setNumStocks] = useState<number>(); // Default number of stocks
-  const [excludedTickers, setExcludedTickers] = useState<string>(""); // Default excluded tickers
-  const [initStocks, setInitStocks] = useState<string>(""); // Default excluded tickers
+  const [numStocks, setNumStocks] = useState<number>();
+  const [excludedTickers, setExcludedTickers] = useState<string>("");
+  const [initStocks, setInitStocks] = useState<string>("");
+  const [isNew, setIsNew] = useState(true);
+
+  const riskArray = [
+    "",
+    "Conservative",
+    "Modertely conservative",
+    "Moderate",
+    "Moderately aggressive",
+    "Aggressive",
+  ];
 
   const handleOptimizePortfolio = () => {
     router.push(
@@ -44,57 +56,27 @@ const RiskResultPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg bg-white p-12 shadow-lg rounded-lg">
+    <div className="flex flex-row justify-center min-h-screen bg-gray-100">
+      <div className="w-1/2 my-10">
         <h1 className="text-2xl text-black font-bold mb-6 text-center">
           Risk Result Analysis
         </h1>
-        <p className="text-center mb-4">Risk Degree: {risk_degree}</p>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Number of Stocks:
-          </label>
-          <input
-            type="number"
-            value={numStocks}
-            onChange={handleNumStocksChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-900 focus:border-blue-900 text-black"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Excluded Tickers (comma separated):
-          </label>
-          <input
-            type="text"
-            value={excludedTickers}
-            onChange={handleExcludedTickersChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-900 text-black"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Current investments (Stocks comma separated):
-          </label>
-          <input
-            type="text"
-            value={initStocks}
-            onChange={handleInitStocksChange}
-            className="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-900 text-black"
-          />
-        </div>
-        <div className="flex justify-between mt-6">
-          <button
-            onClick={handleCreatePortfolio}
-            className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Create New Portfolio
-          </button>
-          <button
-            onClick={handleOptimizePortfolio}
-            className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            Optimize Your Portfolio
+        <p className="text-center mb-4 text-black">
+          Risk Degree: {2 * (risk_degree ? parseInt(risk_degree) : 0)} / 10
+        </p>
+        <p className="text-center mb-4 text-black">
+          Risk Level: {riskArray[parseInt(risk_degree ? risk_degree : "0")]}
+        </p>
+        {isNew ? (
+          <CreatePortfolioCard risk_degree={risk_degree} />
+        ) : (
+          <OptimisePortfolioCard risk_degree={risk_degree} />
+        )}
+        <div className="flex flex-row justify-center my-5">
+          <button onClick={() => setIsNew(!isNew)} className="text-black">
+            {isNew
+              ? "Opotimise your existing portfolio instead?"
+              : "Create a new portfolio instead?"}
           </button>
         </div>
       </div>

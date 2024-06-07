@@ -2,6 +2,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import PieChart from "../components/PieChart";
+import LightweightChart from "../components/LightWeightChart";
+import tickers from "../data/tickers.json";
 
 const CreatePortfolio: React.FC = () => {
   const router = useRouter();
@@ -49,40 +51,62 @@ const CreatePortfolio: React.FC = () => {
   }, [riskDegree, numStocks, excludedTickers]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg bg-white p-8 shadow-lg rounded-lg">
+    <div className="flex flex-row justify-center min-h-screen bg-gray-100">
+      <div className="w-5/6 my-10">
         <h1 className="text-2xl font-bold mb-6 text-center text-black">
           Suggested Portfolio
         </h1>
-        {data ? (
-          <>
-            <table className="min-w-full bg-white border border-gray-200">
-              <thead>
-                <tr>
-                  <th className="px-4 py-2 border-b text-black">Ticker</th>
-                  <th className="px-4 py-2 border-b text-black">
-                    Allocation (%)
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(data).map(([ticker, allocation], index) => (
-                  <tr key={index}>
-                    <td className="px-4 py-2 border-b text-black">{ticker}</td>
-                    <td className="px-4 py-2 border-b text-black">
-                      {allocation.toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="mt-6">
-              <PieChart data={Object.values(data)} labels={Object.keys(data)} />
-            </div>
-          </>
-        ) : (
-          <p className="text-black">Loading...</p>
-        )}
+        <div className="flex flex-row justify-between items-center">
+          <div className="w-1/2">
+            {data ? (
+              <>
+                <table className="min-w-full bg-white border border-gray-200">
+                  <thead>
+                    <th className="px-4 py-2 border-b text-black">Ticker</th>
+                    <th className="px-4 py-2 border-b text-black">
+                      Allocation (%)
+                    </th>
+                    <th className="px-4 py-2 border-b text-black">
+                      Company Name
+                    </th>
+                  </thead>
+                  <tbody>
+                    {Object.entries(data).map(
+                      ([ticker, allocation]: [string, number], index) => (
+                        <React.Fragment key={index}>
+                          <tr>
+                            <td className="px-4 py-2 border-b text-black text-center">
+                              {ticker}
+                            </td>
+                            <td className="px-4 py-2 border-b text-black text-center">
+                              {allocation.toFixed(2)}
+                            </td>
+                            <td className="px-4 py-2 border-b text-black text-center">
+                              {tickers[ticker]}
+                            </td>
+                          </tr>
+                        </React.Fragment>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </>
+            ) : (
+              <p className="text-black">Loading...</p>
+            )}
+          </div>
+          <div className="w-1/2">
+            {data && (
+              <div className="">
+                <PieChart
+                  data={Object.values(data)}
+                  labels={Object.keys(data)}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        {data && <LightweightChart predictions={data} />}
       </div>
     </div>
   );

@@ -55,9 +55,12 @@ const FinancialLiteracyCard = () => {
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {topics.map((topic) => (
-              <div key={topic} className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden">
-                <div className="p-4 bg-blue-900">
-                  <h2 className="text-2xl font-semibold text-white">
+              <div
+                key={topic}
+                className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden"
+              >
+                <div className="bg-blue-900 h-50">
+                  <h2 className="text-2xl font-semibold text-white p-2">
                     {topic}
                   </h2>
                 </div>
