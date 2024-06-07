@@ -75,9 +75,9 @@ const RiskResultPage = () => {
           <OptimisePortfolioCard risk_degree={risk_degree} />
         )}
         <div className="flex flex-row justify-center my-5">
-          <button onClick={() => setIsNew(!isNew)} className="text-black">
+          <button onClick={() => setIsNew(!isNew)} className="text-black underline">
             {isNew
-              ? "Opotimise your existing portfolio instead?"
+              ? "Optimise your existing portfolio instead?"
               : "Create a new portfolio instead?"}
           </button>
         </div>
