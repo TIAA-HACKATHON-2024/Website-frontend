@@ -22,7 +22,9 @@ const CreatePortfolioCard = ({ risk_degree }) => {
 
   const handleCreatePortfolio = () => {
     router.push(
-      `/CreatePortfolio?riskDegree=${risk_degree}&numStocks=${numStocks}&excludedTickers=${excludedTickers}`
+      `/CreatePortfolio?riskDegree=${risk_degree}&numStocks=${numStocks}&excludedTickers=${
+        excludedTickers ? excludedTickers : "XOM"
+      }`
     );
   };
 

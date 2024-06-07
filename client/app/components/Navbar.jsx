@@ -6,15 +6,21 @@ import Image from "next/image";
 // Import the logo; ensure the path is correct for your project structure
 import Logo from "../assets/images/Retirewise.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Define the Navbar component
 const Navbar = () => {
+  const router = useRouter();
   // State to manage the visibility of the menu on smaller screens
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Function to toggle the menu's visibility
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    router.replace("/login");
   };
 
   return (
@@ -28,14 +34,13 @@ const Navbar = () => {
             <Image src={Logo} alt="Flowbite Logo" width={150} height={100} />
           </Link>
           <div className="flex md:order-2 space-x-0 md:space-x-0 rtl:space-x-reverse">
-            <Link href="/login">
-              <button
-                type="button"
-                className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center bg-blue-900 hover:bg-blue-500 text-white px-4 py-4 hidden md:inline-flex"
-              >
-                Login
-              </button>
-            </Link>
+            <button
+              onClick={handleLogout}
+              type="button"
+              className="focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm text-center bg-red-900 hover:bg-red-500 text-white px-4 py-4 hidden md:inline-flex"
+            >
+              Logout
+            </button>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"

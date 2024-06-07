@@ -12,6 +12,7 @@ const CreatePortfolio: React.FC = () => {
   const numStocks = searchParams.get("numStocks");
   const excludedTickers = searchParams.get("excludedTickers");
   const [data, setData] = useState<{ [key: string]: number } | null>(null);
+  const [tickerInfo, setTickerInfo] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +50,25 @@ const CreatePortfolio: React.FC = () => {
 
     fetchData();
   }, [riskDegree, numStocks, excludedTickers]);
+
+  const handleGetTickerInfo = async (ticker: string) => {
+    const response = await fetch(
+      "https://literacy-api-1.onrender.com/api/fundamentals",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ticker: ticker,
+        }),
+      }
+    );
+
+    const result = await response.json();
+    console.log(result);
+    setTickerInfo(result.response);
+  };
 
   return (
     <div className="flex flex-row justify-center min-h-screen bg-gray-100">
@@ -107,6 +127,29 @@ const CreatePortfolio: React.FC = () => {
           </div>
         </div>
         {data && <LightweightChart predictions={data} />}
+        <div className="mt-6"></div>
+        <label
+          htmlFor="tickerSelect"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Select Ticker:
+        </label>
+        <select
+          id="tickerSelect"
+          name="tickerSelect"
+          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+          onChange={(e) => handleGetTickerInfo(e.target.value)}
+        >
+          <option value="">Select a ticker</option>
+          {data &&
+            Object.keys(data).map((ticker) => (
+              <option key={ticker} value={ticker}>
+                {ticker}
+              </option>
+            ))}
+        </select>
+
+        <div className="text-black bg-white p-5">{tickerInfo}</div>
       </div>
     </div>
   );
