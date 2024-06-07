@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
+import Markdown from "markdown-to-jsx";
 
 const topics = [
   "What is options trading",
@@ -62,9 +63,9 @@ const FinancialLiteracyCard = () => {
                   </h2>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-700 text-base">
+                  <Markdown className="text-gray-700 text-base">
                     {data[topic] ? data[topic] : "Loading..."}
-                  </p>
+                  </Markdown>
                 </div>
               </div>
             ))}
