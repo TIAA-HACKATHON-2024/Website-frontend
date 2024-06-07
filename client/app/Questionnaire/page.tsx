@@ -72,11 +72,13 @@ const Page: React.FC = () => {
   const calculateRiskToleranceIndex = (riskToleranceScore: number): number => {
     if (riskToleranceScore >= 0 && riskToleranceScore <= 10) {
       return 0;
+    } else if (riskToleranceScore >= 40) {
+      return 30;
     } else {
       return riskToleranceScore - 10;
     }
   };
-
+  
   const calculateScore = (): {
     timeHorizonScore: number;
     riskToleranceScore: number;

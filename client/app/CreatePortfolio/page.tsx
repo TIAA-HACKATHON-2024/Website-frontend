@@ -19,7 +19,10 @@ const CreatePortfolio: React.FC = () => {
     const fetchData = async () => {
       if (riskDegree && numStocks && excludedTickers) {
         try {
-          const adjustedRiskDegree = parseFloat(riskDegree) / 5;
+          let adjustedRiskDegree = parseFloat(riskDegree) / 5;
+          if (adjustedRiskDegree === 1) {
+            adjustedRiskDegree = 0.99;
+          }
           const excludedTickersArray = excludedTickers
             .split(",")
             .map((ticker) => ticker.trim());
