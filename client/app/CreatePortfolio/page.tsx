@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import PieChart from "../components/PieChart";
 import LightweightChart from "../components/LightWeightChart";
 import tickers from "../data/tickers.json";
+import Markdown from "markdown-to-jsx";
 
 const CreatePortfolio: React.FC = () => {
   const router = useRouter();
@@ -66,7 +67,6 @@ const CreatePortfolio: React.FC = () => {
     );
 
     const result = await response.json();
-    console.log(result);
     setTickerInfo(result.response);
   };
 
@@ -82,13 +82,15 @@ const CreatePortfolio: React.FC = () => {
               <>
                 <table className="min-w-full bg-white border border-gray-200">
                   <thead>
-                    <th className="px-4 py-2 border-b text-black">Ticker</th>
-                    <th className="px-4 py-2 border-b text-black">
-                      Allocation (%)
-                    </th>
-                    <th className="px-4 py-2 border-b text-black">
-                      Company Name
-                    </th>
+                    <tr>
+                      <th className="px-4 py-2 border-b text-black">Ticker</th>
+                      <th className="px-4 py-2 border-b text-black">
+                        Allocation (%)
+                      </th>
+                      <th className="px-4 py-2 border-b text-black">
+                        Company Name
+                      </th>
+                    </tr>
                   </thead>
                   <tbody>
                     {Object.entries(data).map(
@@ -149,7 +151,11 @@ const CreatePortfolio: React.FC = () => {
             ))}
         </select>
 
-        <div className="text-black bg-white p-5">{tickerInfo}</div>
+        {tickerInfo && (
+          <div className="text-black bg-white p-5 overflow-auto max-h-60">
+            <Markdown>{tickerInfo}</Markdown>
+          </div>
+        )}
       </div>
     </div>
   );
