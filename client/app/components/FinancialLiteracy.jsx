@@ -6,13 +6,10 @@ import "tailwindcss/tailwind.css";
 const topics = [
   "What is options trading",
   "How to manage retirement savings",
-  "Understanding Social Security benefits",
+  "Social Security benefits",
   "Investment strategies for retirees",
   "Estate planning basics",
   "Tax planning for retirement",
-  "Health insurance options in retirement",
-  "Long-term care planning",
-  "Creating a retirement budget",
 ];
 
 const FinancialLiteracyCard = () => {
@@ -59,7 +56,7 @@ const FinancialLiteracyCard = () => {
                 key={topic}
                 className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden"
               >
-                <div className="bg-blue-900 h-50">
+                <div className="bg-green-700 h-50">
                   <h2 className="text-2xl font-semibold text-white p-2">
                     {topic}
                   </h2>
