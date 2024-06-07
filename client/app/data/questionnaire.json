@@ -7,7 +7,8 @@
       { "text": "3–5 years", "points": 3 },
       { "text": "6–10 years", "points": 7 },
       { "text": "11 years or more", "points": 10 }
-    ]
+    ],
+    "audio": "/voice/question-1.mp3"
   },
   {
     "question": "Once I begin withdrawing funds from my investments, I plan to spend all of the funds in:",
@@ -17,7 +18,8 @@
       { "text": "2–5 years", "points": 1 },
       { "text": "6–10 years", "points": 4 },
       { "text": "11 years or more", "points": 8 }
-    ]
+    ],
+    "audio": "/voice/question-2.mp3"
   },
   {
     "question": "I would describe my knowledge of investments as:",
@@ -27,7 +29,8 @@
       { "text": "Limited", "points": 3 },
       { "text": "Good", "points": 7 },
       { "text": "Extensive", "points": 10 }
-    ]
+    ],
+    "audio": "/voice/question-3.mp3"
   },
   {
     "question": "What amount of financial risk are you willing to take when you invest?",
@@ -45,7 +48,8 @@
         "text": "Take above average risks expecting to earn above average returns",
         "points": 8
       }
-    ]
+    ],
+    "audio": "/voice/question-4.mp3"
   },
   {
     "question": "Select the investments you currently own or have owned:",
@@ -57,7 +61,8 @@
         "text": "International securities and/or international funds",
         "points": 8
       }
-    ]
+    ],
+    "audio": "/voice/question-5.mp3"
   },
   {
     "question": "Imagine that in the past three months, the overall stock market lost 25% of its value. An individual stock investment you own also lost 25% of its value. What would you do?",
@@ -67,7 +72,8 @@
       { "text": "Sell some of my shares", "points": 2 },
       { "text": "Do nothing", "points": 5 },
       { "text": "Buy more shares", "points": 8 }
-    ]
+    ],
+    "audio": "/voice/question-6.mp3"
   },
   {
     "question": "We’ve outlined the most likely best-case and worst-case annual returns of five hypothetical investment plans. Which range of possible outcomes is most acceptable to you?",
@@ -85,6 +91,7 @@
       { "plan": "C", "average": "9.2%", "best": "30.9%", "worst": "-20.9%" },
       { "plan": "D", "average": "9.8%", "best": "34.4%", "worst": "-29.5%" },
       { "plan": "E", "average": "10.1%", "best": "39.9%", "worst": "-36.0%" }
-    ]
+    ],
+    "audio": "/voice/question-7.mp3"
   }
 ]

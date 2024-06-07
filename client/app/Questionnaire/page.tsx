@@ -6,6 +6,7 @@ import { Question } from "../types";
 import { FaRegQuestionCircle, FaInfoCircle } from "react-icons/fa"; // Import icons
 import { useRouter } from "next/navigation";
 import { Tooltip } from 'react-tooltip'; // Tooltip component
+import AudioPlayer from "../components/AudioPlayer";
 
 const Page: React.FC = () => {
   const router = useRouter();
@@ -126,8 +127,8 @@ const Page: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg">
-        <h1 className="text-3xl text-black font-bold mb-6 text-center">
+      <div className="w-full max-w-lg mb-6">
+        <h1 className="text-3xl text-black font-bold mb-6 text-center mt-8">
           Investor Profile Questionnaire
         </h1>
       <form
@@ -135,8 +136,7 @@ const Page: React.FC = () => {
         className="w-full max-w-lg bg-white p-12 shadow-lg rounded-lg"
       >
         <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center">
-          <FaRegQuestionCircle className="mr-2" /> Investor Profile
-          Questionnaire
+          <FaRegQuestionCircle className="mr-2" /> 
           <FaInfoCircle
             className="ml-2 cursor-pointer"
             data-tooltip-id="tooltip-info"
@@ -162,7 +162,8 @@ const Page: React.FC = () => {
             <div
               style={{ width: `${progress}%` }}
               className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900"
-            ></div>
+              ></div>
+              
           </div>
         </div>
 
@@ -170,7 +171,8 @@ const Page: React.FC = () => {
           <>
             <div key={currentStep} className="mb-4">
               <label className="block mb-2 text-lg font-medium text-gray-700">
-                {questions[currentStep].question}
+                  {questions[currentStep].question}
+                  <AudioPlayer audioSource={questions[currentStep].audio} />
                 <select
                   name={questions[currentStep].name}
                   value={answers[questions[currentStep].name]}

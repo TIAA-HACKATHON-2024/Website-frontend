@@ -15,4 +15,5 @@ export interface Question {
   name: string;
   options: Option[];
   table?: TableRow[];
+  audio: string;
 }
