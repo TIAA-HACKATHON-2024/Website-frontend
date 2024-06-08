@@ -91,14 +91,14 @@ const Navbar = () => {
                   Learn
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/#investments"
                   className="block py-2 px-3 rounded hover:-100 md:hover: hover:text-secondary md:p-0 md::text-blue-500 -white :-700 :text-white md:: -gray-700"
                 >
                   Investments
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

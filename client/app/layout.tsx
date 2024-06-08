@@ -4,9 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import footer from "./components/Footer";
 import Footer from "./components/Footer";
-import { redirect } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +18,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = createClient();
-
-  const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/login");
-  }
+  
 
   return (
     <html lang="en">
