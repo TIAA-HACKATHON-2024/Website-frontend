@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import PieChart from "../components/PieChart";
 import LightweightChart from "../components/LightWeightChart";
 import tickers from "../data/tickers.json";
+interface Tickers {
+  [key: string]: string;
+}
+
+const typedTickers: Tickers = tickers;
 import Markdown from "markdown-to-jsx";
 
 const OptimisePortfolio: React.FC = () => {
@@ -103,7 +108,7 @@ const OptimisePortfolio: React.FC = () => {
                               {allocation.toFixed(2)}
                             </td>
                             <td className="px-4 py-2 border-b text-black text-center">
-                              {tickers[ticker]}
+                              {typedTickers[ticker]}
                             </td>
                           </tr>
                         </React.Fragment>

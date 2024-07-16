@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // Import Next.js Image component for optimized images
 import Image from "next/image";
 // Import the logo; ensure the path is correct for your project structure
-import Logo from "../assets/images/Retirewise.png";
+import Logo from "../assets/images/retirewise.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
